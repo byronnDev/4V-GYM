@@ -65,7 +65,7 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                       (click)="removeActivity(activity)">
                       <img src="../../assets/ph_trash-fill.png" alt="remove">
                     </button>
-                    <button class="absolute top-8 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                    <button class="absolute bottom-0 right-0 mb-2 mr-2 text-xl text-bold text-amber-700"
                       (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
                       <img src="../../assets/ic_round-edit.png" alt="edit">
                     </button>
