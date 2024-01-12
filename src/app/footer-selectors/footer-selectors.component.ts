@@ -7,8 +7,19 @@ import { MatTabsModule } from '@angular/material/tabs';
   selector: 'app-footer-selectors',
   standalone: true,
   imports: [MonitorsComponent, ActivitiesComponent, MatTabsModule],
-  templateUrl: './footer-selectors.component.html',
-  styleUrl: './footer-selectors.component.scss'
+  template: `
+    <footer class="fixed bottom-0 left-0 w-full">
+      <mat-tab-group headerPosition="below">
+          <mat-tab label="Actividades">
+              <app-activities></app-activities>
+          </mat-tab>
+          <mat-tab label="Monitores">
+              <app-monitors></app-monitors>
+          </mat-tab>
+      </mat-tab-group>
+  </footer>
+`,
+  styles: ``
 })
 export class FooterSelectorsComponent {
 
