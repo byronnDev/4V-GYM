@@ -14,17 +14,19 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
         </mat-card>
       </div>
       
-      <!-- List dates -->
+      <!-- Activities -->
       <div class="flex text-3xl flex-col justify-center items-center h-screen">
         <div class="flex flex-row mb-10">
             <button (click)="restarDia()">
-            <img class="h-16" src="../../assets/flechas.png" alt="flecha">
+              <img class="h-16" src="../../assets/flechas.png" alt="flecha">
             </button>
-          <p class="text-4xl">{{selected.toLocaleDateString('es', { year: 'numeric', month: 'long', day: 'numeric' })}}</p>
-          <button (click)="sumarDia()">
-            <img class="h-16 rotate-180" src="../../assets/flechas.png" alt="flecha">
-          </button>
+            <!-- Date -->
+              <p class="text-4xl text-neutral-500 font-mono">{{selected.toLocaleDateString('es', { year: 'numeric', month: 'long', day: 'numeric' })}}</p>
+            <button (click)="sumarDia()">
+              <img class="h-16 rotate-180" src="../../assets/flechas.png" alt="flecha">
+            </button>
         </div>
+        <!-- Table -->
         <table class="bg-neutral-300">
           <tbody>
             @for (activity of activites; track $index) {
@@ -32,8 +34,40 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                 <td class="bg-white">
                   <p>{{hours[$index]}}</p>
                 </td>
-                <td>Monitores</td>
-                <td>Actividad</td>
+                @if (activity.monitors.length != 0) {
+                 @if (activity.monitors.length == 2) {
+                  @for (monitor of activity.monitors; track $index) {
+                    <td>
+                      <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                      {{monitor.name}}
+                    </td>
+                  }
+                } @else {
+                  @for (monitor of activity.monitors; track $index) {
+                    <td>
+                      <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                      {{monitor.name}}
+                    </td>
+                    <td></td>
+                  }
+                }
+                <td>
+                <img class="h-24" src="../../assets/{{activity.activityType.name}}.png" alt="Activity">
+                  <p>{{activity.activityType.name}}</p>
+                </td>
+              } @else {
+                <!-- TODO: Solucionar la visualización de la tabla -->
+                <!-- Free -->
+                <div class="bg-green-500">
+                  <td class="text-center text-white h-32" colspan="3">
+                    <p class="flex justify-center items-center">FREE</p>
+                  </td>
+                  <!-- Button add -->
+                  <button class="right-0">
+                    <img src="../../assets/mingcute_add-fill.png" alt="add button">
+                  </button>
+                </div>
+              }
               </tr>
             }
           </tbody>
