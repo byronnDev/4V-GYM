@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -27,47 +28,58 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
             </button>
         </div>
         <!-- Table -->
-        <table class="bg-neutral-300">
+        <table class="bg-neutral-300 w-2/5">
           <tbody>
             @for (activity of activites; track $index) {
             <tr>
-                <td class="bg-white">
+                <td class="bg-white w-1/3">
                   <p>{{hours[$index]}}</p>
                 </td>
-                @if (activity.monitors.length != 0) {
-                 @if (activity.monitors.length == 2) {
-                  @for (monitor of activity.monitors; track $index) {
-                    <td>
-                      <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                      {{monitor.name}}
-                    </td>
-                  }
-                } @else {
-                  @for (monitor of activity.monitors; track $index) {
-                    <td>
-                      <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                      {{monitor.name}}
-                    </td>
-                    <td></td>
-                  }
-                }
-                <td>
-                <img class="h-24" src="../../assets/{{activity.activityType.name}}.png" alt="Activity">
-                  <p>{{activity.activityType.name}}</p>
+                <td class="bg-gray-300 h-20 relative" [ngClass]="{'bg-green-500': !activity.monitors.length}">
+                  <ng-container *ngIf="activity.monitors.length; else free">
+                    <div class="flex items-center">
+                      <ng-container *ngIf="activity.monitors.length == 2; else oneMonitor">
+                        <ng-container *ngFor="let monitor of activity.monitors">
+                          <div class="flex flex-col items-center">
+                            <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                            <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-template #oneMonitor>
+                        <ng-container *ngFor="let monitor of activity.monitors">
+                          <div class="flex flex-col items-center">
+                            <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                            <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                          </div>
+                        </ng-container>
+                        <div class="flex flex-col items-center w-24"></div>
+                      </ng-template>
+                      <div class="ml-auto mr-auto">
+                        <img src="../../assets/{{activity.activityType.name}}.png" alt="Imagen de {{activity.activityType.name}}"
+                          class="w-24 h-24">
+                          <p class="text-custom-red text-lg">{{activity.activityType.name}}</p>
+                      </div>
+                    </div>
+                    <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                      (click)="removeActivity(activity)">
+                      <img src="../../assets/ph_trash-fill.png" alt="remove">
+                    </button>
+                    <button class="absolute top-8 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                      (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
+                      <img src="../../assets/ic_round-edit.png" alt="edit">
+                    </button>
+                  </ng-container>
+                  <ng-template #free>
+                    <div class="flex justify-center items-center h-full text-white font-bold">
+                      FREE
+                      <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                        (click)="openModal(hours[$index])">
+                        <img src="../../assets/mingcute_add-fill.png" alt="add">
+                      </button>
+                    </div>
+                  </ng-template>
                 </td>
-              } @else {
-                <!-- TODO: Solucionar la visualización de la tabla -->
-                <!-- Free -->
-                <div class="bg-green-500">
-                  <td class="text-center text-white h-32" colspan="3">
-                    <p class="flex justify-center items-center">FREE</p>
-                  </td>
-                  <!-- Button add -->
-                  <button class="right-0">
-                    <img src="../../assets/mingcute_add-fill.png" alt="add button">
-                  </button>
-                </div>
-              }
               </tr>
             }
           </tbody>
@@ -94,11 +106,23 @@ export class ActivitiesComponent {
   restarDia() {
     this.selected.setDate(this.selected.getDate() - 1);
   }
+
+  removeActivity(activity: Activity) {
+    this.activites = this.activites.filter((a) => a !== activity);
+  }
+
+  loadMonitor(activity: Activity, hour: string) {
+    // console.log(activity);
+  }
+
+  openModal(hour: string) {
+    // console.log(hour);
+  }
 }
 
 @NgModule({
   declarations: [ActivitiesComponent],
-  imports: [MatCardModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, MatCardModule, MatDatepickerModule, MatNativeDateModule],
   providers: [GlobalApiService],
   exports: [ActivitiesComponent]
 })
