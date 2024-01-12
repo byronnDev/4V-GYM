@@ -5,6 +5,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-api.service';
 
+// TODO: Add Modal to add activity and monitors
+
 @Component({
   selector: 'app-activities',
   template: `
