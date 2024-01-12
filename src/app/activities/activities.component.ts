@@ -35,7 +35,7 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                 <td class="bg-white w-1/3">
                   <p>{{hours[$index]}}</p>
                 </td>
-                <td class="bg-gray-300 h-20 relative" [ngClass]="{'bg-green-500': !activity.monitors.length}">
+                <td class="bg-gray-300 h-32 relative" [ngClass]="{'bg-green-500': !activity.monitors.length}">
                   <ng-container *ngIf="activity.monitors.length; else free">
                     <div class="flex items-center">
                       <ng-container *ngIf="activity.monitors.length == 2; else oneMonitor">
