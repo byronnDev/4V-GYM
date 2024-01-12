@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-
+// TODO: Add carrusel to show monitors
+// TODO: Add modal to add monitors
 @Component({
   selector: 'app-monitors',
   standalone: true,
   imports: [],
-  templateUrl: './monitors.component.html',
-  styleUrl: './monitors.component.scss'
+  template: `
+    
+  `,
+  styles: ``
 })
 export class MonitorsComponent {
 
