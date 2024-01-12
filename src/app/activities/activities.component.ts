@@ -31,7 +31,7 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
         <table class="bg-neutral-300 w-2/5">
           <tbody>
             @for (activity of activites; track $index) {
-            <tr *ngIf="activity.date_start.toDateString() === selected.toDateString()">
+            <tr *ngIf="activity.date_start.toDateString() === selected.toDateString(); else noActivities">
                 <td class="bg-white w-1/3">
                   <p>{{hours[$index]}}</p>
                 </td>
@@ -80,6 +80,23 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                   </ng-template>
                 </td>
               </tr>
+
+              <ng-template #noActivities>
+                <tr>
+                  <td class="bg-white w-1/3">
+                    <p>{{hours[$index]}}</p>
+                  </td>
+                  <td class="bg-green-500 h-32 relative">
+                    <div class="flex justify-center items-center h-full text-white font-bold">
+                      FREE
+                      <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                        (click)="openModal(hours[$index])">
+                        <img src="../../assets/mingcute_add-fill.png" alt="add">
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
             }
           </tbody>
         </table>
