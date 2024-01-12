@@ -31,7 +31,7 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
         <table class="bg-neutral-300 w-2/5">
           <tbody>
             @for (activity of activites; track $index) {
-            <tr>
+            <tr *ngIf="activity.date_start.toDateString() === selected.toDateString()">
                 <td class="bg-white w-1/3">
                   <p>{{hours[$index]}}</p>
                 </td>
@@ -83,11 +83,11 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
             }
           </tbody>
         </table>
-      </div>
+        </div>
   `,
 })
 export class ActivitiesComponent {
-  selected: Date = new Date();
+  selected: Date = new Date('2021-06-01');
   hours = ['10:00 11:30', '13:30 15:00', '17:30 19:00'];
   activites: Activity[] = [];
   activityTypes: ActivityType[] = [];
