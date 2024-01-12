@@ -58,7 +58,6 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                       <div class="ml-auto mr-auto">
                         <img src="../../assets/{{activity.activityType.name}}.png" alt="Imagen de {{activity.activityType.name}}"
                           class="w-24 h-24">
-                          <p class="text-custom-red text-lg">{{activity.activityType.name}}</p>
                       </div>
                     </div>
                     <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
