@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { Component, NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-api.service';
 
 @Component({
   selector: 'app-activities',
-  standalone: true,
-  imports: [MatCardModule, MatDatepickerModule, MatNativeDateModule],
   template: `
       <!-- Calendar -->
       <div class="absolute top-0 left-0">
@@ -21,36 +19,36 @@ import { MatNativeDateModule } from '@angular/material/core';
       <div class="flex justify-center items-center h-screen">
         <table class="bg-neutral-400">
           <tbody>
-            @for (activity of activites; track $index) {
-              <tr>
+            <tr>
                 <td class="bg-white">
-                  <p>{{horas[$index]}}</p>
+                  <p>{{hours[0]}}</p>
                 </td>
-                <!-- <td class="bg-green-500" colspan="3">
-                    <p class="text-center">FREE</p>
-                </td> -->
                 <td>Monitores</td>
                 <td>Actividad</td>
               </tr>
-            }
           </tbody>
         </table>
       </div>
   `,
-  styles: `
-  .demo-inline-calendar-card {
-    width: 300px;
-  }
-  `
 })
 export class ActivitiesComponent {
   selected: Date | null = null;
-  horas = ['10:00 11:30',
-    '13:30 15:00',
-    '17:30 19:00',
-  ]
+  hours = ['10:00 11:30', '13:30 15:00', '17:30 19:00'];
   activites: Activity[] = [];
+  activityTypes: ActivityType[] = [];
+  monitors: Monitors[] = [];
 
-  constructor() {
+  constructor(private globalApi: GlobalApiService) {
+    this.activites = this.globalApi.activities;
+    this.activityTypes = this.globalApi.activityTypes;
+    this.monitors = this.globalApi.monitors;
   }
 }
+
+@NgModule({
+  declarations: [ActivitiesComponent],
+  imports: [MatCardModule, MatDatepickerModule, MatNativeDateModule],
+  providers: [GlobalApiService],
+  exports: [ActivitiesComponent]
+})
+export class ActivitiesModule { }
