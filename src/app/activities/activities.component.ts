@@ -102,6 +102,11 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
         </table>
         </div>
   `,
+  styles: `
+    .demo-inline-calendar-card {
+      width: 300px;
+    }
+  `
 })
 export class ActivitiesComponent {
   selected: Date = new Date('2021-06-01');
