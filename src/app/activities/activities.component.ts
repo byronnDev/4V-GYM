@@ -22,7 +22,7 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
               <img class="h-16" src="../../assets/flechas.png" alt="flecha">
             </button>
             <!-- Date -->
-              <p class="text-4xl text-neutral-500 font-mono">{{selected.toLocaleDateString('es', { year: 'numeric', month: 'long', day: 'numeric' })}}</p>
+              <p class="pt-2 text-4xl text-neutral-500 font-mono">{{selected.toLocaleDateString('es', { year: 'numeric', month: 'long', day: 'numeric' })}}</p>
             <button (click)="sumarDia()">
               <img class="h-16 rotate-180" src="../../assets/flechas.png" alt="flecha">
             </button>
