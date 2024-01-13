@@ -33,76 +33,88 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
         <table class="bg-neutral-300 w-2/5">
           <tbody>
             @for (activity of activites; track $index) {
-            <tr *ngIf="activity.date_start.toDateString() === selected.toDateString(); else noActivities">
-                <td class="bg-white w-1/3">
-                  <p>{{hours[$index]}}</p>
-                </td>
-                <td class="bg-gray-300 h-32 relative" [ngClass]="{'bg-green-500': !activity.monitors.length}">
-                  <ng-container *ngIf="activity.monitors.length; else free">
-                    <div class="flex items-center">
-                      <ng-container *ngIf="activity.monitors.length == 2; else oneMonitor">
-                        <ng-container *ngFor="let monitor of activity.monitors">
-                          <div class="flex flex-col items-center">
-                            <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                            <p class="text-custom-red text-lg">{{ monitor.name }}</p>
-                          </div>
-                        </ng-container>
-                      </ng-container>
-                      <ng-template #oneMonitor>
-                        <ng-container *ngFor="let monitor of activity.monitors">
-                          <div class="flex flex-col items-center">
-                            <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                            <p class="text-custom-red text-lg">{{ monitor.name }}</p>
-                          </div>
-                        </ng-container>
-                        <div class="flex flex-col items-center w-24"></div>
-                      </ng-template>
-                      <div class="ml-auto mr-auto">
-                        <img src="../../assets/{{activity.activityType.name}}.png" alt="Imagen de {{activity.activityType.name}}"
-                          class="w-24 h-24">
-                      </div>
-                    </div>
-                    <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                      (click)="removeActivity(activity)">
-                      <img src="../../assets/ph_trash-fill.png" alt="remove">
-                    </button>
-                    <button class="absolute bottom-0 right-0 mb-2 mr-2 text-xl text-bold text-amber-700"
-                      (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
-                      <img src="../../assets/ic_round-edit.png" alt="edit">
-                    </button>
-                  </ng-container>
-                  <ng-template #free>
-                    <div class="flex justify-center items-center h-full text-white font-bold">
-                      FREE
-                      <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                        (click)="openModal(hours[$index])">
-                        <img src="../../assets/mingcute_add-fill.png" alt="add">
-                      </button>
-                    </div>
-                  </ng-template>
-                </td>
-              </tr>
-
-              <ng-template #noActivities>
+              @if (activity.date_start.toDateString() === selected.toDateString()) {
                 <tr>
                   <td class="bg-white w-1/3">
                     <p>{{hours[$index]}}</p>
                   </td>
-                  <td class="bg-green-500 h-32 relative">
-                    <div class="flex justify-center items-center h-full text-white font-bold">
-                      FREE
+                <td class="bg-gray-300 h-32 relative" [ngClass]="{'bg-green-700': !activity.monitors.length}">
+                @if (activity.monitors.length) {
+                  <ng-container>
+                    <div class="flex items-center">
+                      @if (activity.monitors.length == 2) {
+                        <ng-container>
+                          @for (monitor of activity.monitors; track $index) {
+                            <ng-container>
+                              <div class="flex flex-col items-center">
+                                <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                                <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                              </div>
+                            </ng-container>
+                          }
+                        </ng-container>
+                      } @else {
+                        <ng-template>
+                          @for (monitor of activity.monitors; track $index){
+                            <ng-container>
+                              <div class="flex flex-col items-center">
+                                <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                                <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                              </div>
+                            </ng-container>
+                          }
+                          <div class="flex flex-col items-center w-24"></div>
+                        </ng-template>
+                      }
+                      <div class="ml-auto mr-auto">
+                        <img src="../../assets/{{activity.activityType.name}}.png" alt="Imagen de {{activity.activityType.name}}"
+                          class="w-24 h-24">
+                      </div>
+                      </div>
                       <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                        (click)="openModal(hours[$index])">
-                        <img src="../../assets/mingcute_add-fill.png" alt="add">
+                        (click)="removeActivity(activity)">
+                        <img src="../../assets/ph_trash-fill.png" alt="remove">
                       </button>
-                    </div>
+                      <button class="absolute bottom-0 right-0 mb-2 mr-2 text-xl text-bold text-amber-700"
+                        (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
+                        <img src="../../assets/ic_round-edit.png" alt="edit">
+                      </button>
+                  </ng-container>
+                  } @else {
+                      <ng-template #free>
+                        <div class="flex justify-center items-center h-full text-white font-bold">
+                          FREE
+                          <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                            (click)="openModal(hours[$index].split(' ')[0])">
+                            <img src="../../assets/mingcute_add-fill.png" alt="add">
+                          </button>
+                        </div>
+                      </ng-template>
+                      }
                   </td>
                 </tr>
-              </ng-template>
+              } @else {
+                <ng-template>
+                  <tr>
+                    <td class="bg-white w-1/3">
+                      <p>{{hours[$index]}}</p>
+                    </td>
+                    <td class="bg-green-700 h-32 relative">
+                      <div class="flex justify-center items-center h-full text-white font-bold">
+                        FREE
+                        <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                          (click)="openModal(hours[$index].split(' ')[0])">
+                          <img src="../../assets/mingcute_add-fill.png" alt="add">
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-template>
+              }
             }
           </tbody>
         </table>
-        </div>
+      </div>
   `,
   styles: `
     .demo-inline-calendar-card {
