@@ -40,31 +40,22 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                   </td>
                 <td class="bg-gray-300 h-32 relative" [ngClass]="{'bg-green-700': !activity.monitors.length}">
                 @if (activity.monitors.length) {
-                  <ng-container>
                     <div class="flex items-center">
                       @if (activity.monitors.length == 2) {
-                        <ng-container>
-                          @for (monitor of activity.monitors; track $index) {
-                            <ng-container>
-                              <div class="flex flex-col items-center">
-                                <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                                <p class="text-custom-red text-lg">{{ monitor.name }}</p>
-                              </div>
-                            </ng-container>
-                          }
-                        </ng-container>
+                        @for (monitor of activity.monitors; track $index) {
+                            <div class="flex flex-col items-center">
+                              <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                              <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                            </div>
+                        }
                       } @else {
-                        <ng-template>
-                          @for (monitor of activity.monitors; track $index){
-                            <ng-container>
-                              <div class="flex flex-col items-center">
-                                <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
-                                <p class="text-custom-red text-lg">{{ monitor.name }}</p>
-                              </div>
-                            </ng-container>
-                          }
-                          <div class="flex flex-col items-center w-24"></div>
-                        </ng-template>
+                        @for (monitor of activity.monitors; track $index){
+                          <div class="flex flex-col items-center">
+                            <img class="h-24" src="../../assets/bi_person-fill.png" alt="person">
+                            <p class="text-custom-red text-lg">{{ monitor.name }}</p>
+                          </div>
+                        }
+                        <div class="flex flex-col items-center w-24"></div>
                       }
                       <div class="ml-auto mr-auto">
                         <img src="../../assets/{{activity.activityType.name}}.png" alt="Imagen de {{activity.activityType.name}}"
@@ -79,18 +70,15 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                         (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
                         <img src="../../assets/ic_round-edit.png" alt="edit">
                       </button>
-                  </ng-container>
-                  } @else {
-                      <ng-template #free>
-                        <div class="flex justify-center items-center h-full text-white font-bold">
-                          FREE
-                          <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                            (click)="openModal(hours[$index].split(' ')[0])">
-                            <img src="../../assets/mingcute_add-fill.png" alt="add">
-                          </button>
-                        </div>
-                      </ng-template>
-                      }
+                    } @else {
+                      <div class="flex justify-center items-center h-full text-white font-bold">
+                        FREE
+                        <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                          (click)="openModal(hours[$index].split(' ')[0])">
+                          <img src="../../assets/mingcute_add-fill.png" alt="add">
+                        </button>
+                      </div>
+                    }
                   </td>
                 </tr>
               } @else {
