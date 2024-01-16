@@ -82,22 +82,20 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
                   </td>
                 </tr>
               } @else {
-                <ng-template>
-                  <tr>
-                    <td class="bg-white w-1/3">
-                      <p>{{hours[$index]}}</p>
-                    </td>
-                    <td class="bg-green-700 h-32 relative">
-                      <div class="flex justify-center items-center h-full text-white font-bold">
-                        FREE
-                        <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                          (click)="openModal(hours[$index].split(' ')[0])">
-                          <img src="../../assets/mingcute_add-fill.png" alt="add">
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </ng-template>
+                <tr>
+                  <td class="bg-white w-1/3">
+                    <p>{{hours[$index]}}</p>
+                  </td>
+                  <td class="bg-green-700 h-32 relative">
+                    <div class="flex justify-center items-center h-full text-white font-bold">
+                      FREE
+                      <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
+                        (click)="openModal(hours[$index].split(' ')[0])">
+                        <img src="../../assets/mingcute_add-fill.png" alt="add">
+                      </button>
+                    </div>
+                  </td>
+                </tr>
               }
             }
           </tbody>
