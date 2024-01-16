@@ -71,8 +71,15 @@ export class GlobalApiService {
       {
         id: 3,
         name: 'Ander',
-        email: 'andeer.1@gmail.com'
+        email: 'andeer.1@gmail.com',
+        phone: '123456789',
       },
+      {
+        id: 4,
+        name: 'Jon',
+        email: 'jon@cuatrovientos.org',
+        phone: '123456789',
+      }
     ];
     this.activities = [
       {
@@ -92,7 +99,7 @@ export class GlobalApiService {
         id: 2,
         activityType: {
           id: 2,
-          name:ActivityTypeEnum.BodyPump,
+          name: ActivityTypeEnum.BodyPump,
           numberMonitors: 0
         },
         monitors: [],
