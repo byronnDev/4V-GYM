@@ -13,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <footer class="fixed bottom-0 left-0 w-full">
       <mat-tab-group headerPosition="below">
-          <!-- <mat-tab>
+          <mat-tab>
             <ng-template mat-tab-label>
             <span class="material-symbols-outlined mr-2">
               calendar_clock
@@ -21,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
               Actividades
             </ng-template>
             <app-activities></app-activities>
-          </mat-tab> -->
+          </mat-tab>
 
           <mat-tab>
             <ng-template mat-tab-label>
