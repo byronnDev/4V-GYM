@@ -72,7 +72,6 @@ export class GlobalApiService {
         id: 3,
         name: 'Ander',
         email: 'andeer.1@gmail.com',
-        phone: '123456789',
       },
       {
         id: 4,

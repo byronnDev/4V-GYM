@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GlobalApiService, Monitors } from '../global-api.service';
 
+//! TODO Add card icons/buttons and add button to add monitors
+
 @Component({
   selector: 'app-monitors',
   standalone: true,
@@ -20,7 +22,7 @@ import { GlobalApiService, Monitors } from '../global-api.service';
       @for (data of filteredCards; track $index) {
         @if ($index >= firstCardIndex) { 
           @if ($index < firstCardIndex + 3) { <!-- 3 cards per page -->
-            <div class="bg-neutral-300 w-1/5 py-5">
+            <div class="bg-neutral-300 w-1/5 h-72 pt-5">
               <div class="flex justify-center">
                 <img src="../../assets/bi_person-fill.png" alt="person" class="h-36 w-36">
               </div>
@@ -48,7 +50,7 @@ export class MonitorsComponent {
 
   filteredCards: Monitors[] = this.cards; // cards filtered by search
 
-  firstCardIndex = 0;  // index of the first card to show
+  firstCardIndex = 0; // index of the first card to show
   searchString = ''; // value of the search input
 
   scrollLeft() {
