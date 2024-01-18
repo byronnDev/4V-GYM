@@ -144,4 +144,12 @@ export class GlobalApiService {
   removeMonitor(monitor: Monitors): void {
     this.monitors = this.monitors.filter(m => m.id !== monitor.id);
   }
+
+  getLastId(): number {
+    return this.activities[this.activities.length - 1].id;
+  }
+
+  updateMonitor(id: number, monitor: Monitors): void {
+    this.monitors = this.monitors.map(m => m.id === id ? monitor : m);
+  }
 }
