@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -72,7 +72,7 @@ import { FormsModule } from '@angular/forms';
                       <div class="flex justify-center items-center h-full text-white font-bold">
                         FREE
                         <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                          (click)="openModal(hours[$index].split(' ')[0])">
+                          (click)="openModal(hours[$index])">
                           <img src="../../assets/mingcute_add-fill.png" alt="add">
                         </button>
                       </div>
@@ -88,7 +88,7 @@ import { FormsModule } from '@angular/forms';
                     <div class="flex justify-center items-center h-full text-white font-bold">
                       FREE
                       <button class="absolute top-0 right-0 mt-2 mr-2 text-xl text-bold text-amber-700"
-                        (click)="openModal(hours[$index].split(' ')[0])">
+                        (click)="openModal(hours[$index])">
                         <img src="../../assets/mingcute_add-fill.png" alt="add">
                       </button>
                     </div>
@@ -117,7 +117,7 @@ import { FormsModule } from '@angular/forms';
             <!-- Modal body -->
             <div class="flex flex-col space-y-4">
               <!-- Activity type -->
-              <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4 mb-10" (change)="changeMonitorNumber(activityTypeSelected)">
+              <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4 mb-10" [(ngModel)]="activityTypeSelected" (change)="changeMonitorNumber()">
                 <option disabled selected>Tipo Actividad</option>
                 @for (type of activityTypes; track $index) {
                   <option [value]="type">{{type.name}}</option>
@@ -125,16 +125,15 @@ import { FormsModule } from '@angular/forms';
               </select>
               
               <!-- Monitors -->
-              <div *ngFor="let i of numberMonitors">
-                <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4">
+              @for (i of numberMonitors; track $index) {
+                <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4" [(ngModel)]="selectedMonitors[$index]">
                   <option disabled selected>Select a monitor</option>
-                  <option *ngFor="let monitor of monitors" [value]="monitor.name">{{monitor.name}}</option>
+                  <option *ngFor="let monitor of monitors" [value]="monitor">{{monitor.name}}</option>
                 </select>
-              </div>
-
+              }
               <!-- Accept and cancel buttons -->
               <div class="flex justify-between space-x-6">
-                <button class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                <button (click)="addActivity()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
                   ACEPTAR
                 </button>
                 <button (click)="closeModal()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
@@ -154,22 +153,47 @@ import { FormsModule } from '@angular/forms';
     }
   `
 })
-export class ActivitiesComponent {
+export class ActivitiesComponent implements OnInit {
   selected: Date = new Date('2021-06-01');
   hours = ['10:00 11:30', '13:30 15:00', '17:30 19:00'];
   activites: Activity[] = [];
   activityTypes: ActivityType[] = [];
   monitors: Monitors[] = [];
   isModalOpen: boolean = true;
+  // Modal variables
+  activityTypeSelected: ActivityType;
+  selectedMonitors: Monitors[];
+  numberMonitors: number[]; // Array of numbers from 0 to activityTypeSelected.numberMonitors
 
-  activityTypeSelected: ActivityType = this.activityTypes[0];
-  selectedMonitors: Monitors[] = [];
-  numberMonitors: number[] = [];
+  newActivity: Activity;
+  newActivityHour: string;
 
   constructor(private globalApi: GlobalApiService) {
     this.activites = this.globalApi.activities;
     this.activityTypes = this.globalApi.activityTypes;
     this.monitors = this.globalApi.monitors;
+
+    // Modal variables
+    this.activityTypeSelected = this.activityTypes[0];
+    this.selectedMonitors = [];
+    this.numberMonitors = [];
+
+    // Set the new activity
+    this.newActivity = {
+      id: -1,
+      date_start: this.selected,
+      date_end: this.selected,
+      monitors: [],
+      activityType: this.activityTypeSelected
+    };
+    this.newActivityHour = '';
+  }
+
+  ngOnInit() {
+    // Set the first activity type as the default value
+    if (this.activityTypes && this.activityTypes.length > 0) {
+      this.activityTypeSelected = this.activityTypes[0];
+    }
   }
 
   sumarDia() {
@@ -183,20 +207,68 @@ export class ActivitiesComponent {
     this.activites = this.activites.filter((a) => a !== activity);
   }
 
-  openModal(hour: string) {
+  openModal(hours: string) {
     this.isModalOpen = true;
+    this.newActivityHour = hours;
   }
 
   closeModal() {
     this.isModalOpen = false;
+    this.modalVariablesDefault();
+  }
+
+  modalVariablesDefault() {
+    this.activityTypeSelected = this.activityTypes[0];
+    this.selectedMonitors = [];
+    this.numberMonitors = [];
   }
 
   //!! TODO: FIX THIS VISUAL BUG
-  changeMonitorNumber(activityType: ActivityType) {
-    this.activityTypeSelected = activityType;
+  changeMonitorNumber() {
+    alert(this.activityTypeSelected.numberMonitors + ' ' + this.activityTypeSelected.name);
     this.numberMonitors = [];
+
     for (let i = 0; i < this.activityTypeSelected.numberMonitors; i++) {
       this.numberMonitors.push(i);
+    }
+  }
+
+  addMonitor(monitor: Monitors) {
+    this.selectedMonitors.push(monitor);
+    return monitor;
+  }
+
+  loadMonitor() {
+    // Sacar notificación de que se ha añadido el monitor correctamente
+    alert('Monitor añadido correctamente');
+    this.closeModal();
+  }
+
+  addActivity() {
+    // Save hours in variables
+    const startHour = this.newActivityHour.split(' ')[0];
+    const endHour = this.newActivityHour.split(' ')[1];
+
+    // Verificar que los datos sean válidos antes de asignarlos
+    if (startHour && endHour) {
+      // Set id to the new activity
+      this.newActivity.id = this.globalApi.getLastId() + 1;
+      // Set hours to the new activity
+      this.newActivity.date_start.setHours(parseInt(startHour));
+      this.newActivity.date_start.setMinutes(parseInt(endHour));
+
+      // Set monitors to the new activity
+      this.newActivity.monitors = this.selectedMonitors;
+
+      // Add the new activity to the global api and update the activities array
+      this.globalApi.addActivity(this.newActivity);
+      this.activites = this.globalApi.activities;
+
+      // Close the modal
+      this.closeModal();
+    } else {
+      // Handle error or display a message indicating invalid data
+      console.error('Invalid start or end hour');
     }
   }
 }
