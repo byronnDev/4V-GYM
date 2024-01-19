@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
+`npm install -g @angular/cli` to install Angular CLI
+
+On Windows client computers, the execution of PowerShell scripts is disabled by default. To allow the execution of PowerShell scripts, which is needed for npm global binaries, you must set the following execution policy:
+`Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+
+if you have an error with `npm install` try `npm install --legacy-peer-deps`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

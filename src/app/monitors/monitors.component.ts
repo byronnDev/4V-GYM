@@ -22,7 +22,7 @@ import { GlobalApiService, Monitors } from '../global-api.service';
     </button>
 
     <!-- Cards section -->
-    <div class="flex flex-wrap space-x-10 justify-center items-center mb-48">
+    <div class="flex flex-wrap space-x-10 justify-center items-center mb-24">
       <!-- Button to scroll left -->
       <button (click)="scrollLeft()">
         <img src="../../assets/flechas.png" alt="flecha" class="h-16">
@@ -65,8 +65,8 @@ import { GlobalApiService, Monitors } from '../global-api.service';
     <div x-show.duration.100ms="isModalOpen" x-transition:enter="opacity-0 scale-95"
         x-transition:enter-start="&amp;#x200B;" x-transition:enter-end="opacity-100 scale-100"
         x-transition:leave="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95" class="fixed inset-y-0 z-50 w-1/2 h-2/2 overflow-y-auto
-        overflow-x-hidden bg-white rounded shadow-lg m-40">
+        x-transition:leave-end="opacity-0 scale-95" class="fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
+        overflow-x-hidden bg-white rounded shadow-lg m-20">
 
       <div class="flex items-center justify-center">
         <div>
