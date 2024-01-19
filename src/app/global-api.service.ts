@@ -57,24 +57,24 @@ export class GlobalApiService {
 
     this.monitors = [
       {
-        id: 1,
+        id: 0,
         name: 'Juan',
         email: 'juan@gmail.com',
         phone: '123890567',
       },
       {
-        id: 2,
+        id: 1,
         name: 'Arkaitz',
         email: 'arkaitzcs@gmail.com',
         phone: '666666666',
       },
       {
-        id: 3,
+        id: 2,
         name: 'Ander',
         email: 'andeer.1@gmail.com',
       },
       {
-        id: 4,
+        id: 3,
         name: 'Jon',
         email: 'jon@cuatrovientos.org',
         phone: '123456789',

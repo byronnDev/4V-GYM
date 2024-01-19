@@ -59,46 +59,43 @@ import { GlobalApiService, Monitors } from '../global-api.service';
     </div>
 
     <!-- Modal -->
-  @if (isModalOpen){
-  <div class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter 
-    backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out">
-    <div x-show.duration.100ms="isModalOpen" x-transition:enter="opacity-0 scale-95"
-        x-transition:enter-start="&amp;#x200B;" x-transition:enter-end="opacity-100 scale-100"
-        x-transition:leave="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95" class="fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
-        overflow-x-hidden bg-white rounded shadow-lg m-20">
+    @if (isModalOpen) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter 
+      backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out">
+      <div class="fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
+          overflow-x-hidden bg-white rounded shadow-lg m-20">
 
-      <div class="flex items-center justify-center">
-        <div>
-          <!-- Modal header -->
-          <div class="flex relative">
-            <img src="../assets/bi_person-fill.png" alt="person icon" class="mx-auto mt-4">
-            <img src="../assets/mingcute_add-fill.png" alt="person icon" class="absolute bottom-7 right-14 h-8">
-          </div>
-          <!-- Modal body -->
-          <div class="flex flex-col space-y-4">
-            <!-- Name -->
-            <input type="text" id="name" name="name" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="name" (focus)="name === '' || name === getDefaultName() ? name = '' : null" (blur)="name === '' || name === getDefaultName() ? name = getDefaultName() : null" required>
-            <!-- Email -->
-            <input type="text" id="email" name="email" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="email" (focus)="email === '' || email === getDefaultEmail() ? email = '' : null" (blur)="email === '' || email === getDefaultEmail() ? email = getDefaultEmail() : null" required="">
-            <!-- Phone -->
-            <input type="text" id="phone" name="phone" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="phone" (focus)="phone === '' || phone === getDefaultPhone() ? phone = '' : null" (blur)="phone === getDefaultPhone() ? phone = getDefaultPhone() : null">
+        <div class="flex items-center justify-center">
+          <div>
+            <!-- Modal header -->
+            <div class="flex relative">
+              <img src="../assets/bi_person-fill.png" alt="person icon" class="mx-auto mt-4">
+              <img src="../assets/mingcute_add-fill.png" alt="person icon" class="absolute bottom-7 right-14 h-8">
+            </div>
+            <!-- Modal body -->
+            <div class="flex flex-col space-y-4">
+              <!-- Name -->
+              <input type="text" id="name" name="name" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="name" (focus)="name === '' || name === getDefaultName() ? name = '' : null" (blur)="name === '' || name === getDefaultName() ? name = getDefaultName() : null" required>
+              <!-- Email -->
+              <input type="text" id="email" name="email" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="email" (focus)="email === '' || email === getDefaultEmail() ? email = '' : null" (blur)="email === '' || email === getDefaultEmail() ? email = getDefaultEmail() : null" required="">
+              <!-- Phone -->
+              <input type="text" id="phone" name="phone" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="phone" (focus)="phone === '' || phone === getDefaultPhone() ? phone = '' : null" (blur)="phone === getDefaultPhone() ? phone = getDefaultPhone() : null">
 
-            <!-- Accept and cancel buttons -->
-            <div class="flex justify-between space-x-6">
-              <button (click)="updateMonitor(index)" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
-                ACEPTAR
-              </button>
-              <button (click)="closeModal()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
-                CANCELAR
-              </button>
+              <!-- Accept and cancel buttons -->
+              <div class="flex justify-between space-x-6">
+                <button (click)="updateMonitor(index)" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                  ACEPTAR
+                </button>
+                <button (click)="closeModal()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                  CANCELAR
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-}
+    }
     `,
   styles: ``
 })
