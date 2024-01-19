@@ -126,7 +126,8 @@ export class GlobalApiService {
   }
 
   removeActivity(activity: Activity): void {
-    this.activities = this.activities.filter(a => a.id !== activity.id);
+    // Remove monitors from the activity to don't show them in acitivities
+    activity.monitors = [];
   }
 
   replaceActivity(newActivity: Activity): void {

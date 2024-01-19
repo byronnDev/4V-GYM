@@ -208,7 +208,11 @@ export class ActivitiesComponent implements OnInit {
   }
 
   removeActivity(activity: Activity) {
-    this.activites = this.activites.filter((a) => a !== activity);
+    console.log('Removing activity: ' + activity.activityType.name + '\n' + activity.monitors.forEach(m => m.name));
+    // Remove the activity from the global api
+    this.globalApi.removeActivity(activity);
+    // Update the activities array
+    this.activites = this.globalApi.activities;
   }
 
   openModal(hours: string) {
