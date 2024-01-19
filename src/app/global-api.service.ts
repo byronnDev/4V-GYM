@@ -144,4 +144,8 @@ export class GlobalApiService {
   updateMonitor(id: number, monitor: Monitors): void {
     this.monitors = this.monitors.map(m => m.id === id ? monitor : m);
   }
+
+  findMonitor(name: string): Monitors | undefined {
+    return this.monitors.find(m => m.name === name);
+  }
 }

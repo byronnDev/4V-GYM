@@ -126,7 +126,7 @@ import { FormsModule } from '@angular/forms';
               
               <!-- Monitors -->
               @for (i of numberMonitors; track $index) {
-                <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4" [(ngModel)]="selectedMonitors[$index]">
+                <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4" [(ngModel)]="selectedMonitorsName[$index]">
                   <option disabled selected>Select a monitor</option>
                   @for (monitor of monitors; track $index) {
                     <option>{{monitor.name}}</option>
@@ -164,6 +164,7 @@ export class ActivitiesComponent implements OnInit {
   isModalOpen: boolean = false;
   // Modal variables
   activityTypeSelected: ActivityType;
+  selectedMonitorsName: string[];
   selectedMonitors: Monitors[];
   numberMonitors: number[]; // Array of numbers from 0 to activityTypeSelected.numberMonitors
 
@@ -177,8 +178,9 @@ export class ActivitiesComponent implements OnInit {
 
     // Modal variables
     this.activityTypeSelected = this.activityTypes[0];
-    this.selectedMonitors = [];
+    this.selectedMonitorsName = [];
     this.numberMonitors = [1, 2];
+    this.selectedMonitors = [];
 
     // Set the new activity
     this.newActivity = {
@@ -221,7 +223,7 @@ export class ActivitiesComponent implements OnInit {
 
   modalVariablesDefault() {
     this.activityTypeSelected = this.activityTypes[0];
-    this.selectedMonitors = [];
+    this.selectedMonitorsName = [];
     this.numberMonitors = [1, 2];
   }
 
@@ -253,7 +255,6 @@ export class ActivitiesComponent implements OnInit {
       // Find the activity with the corresponding start and end hour
       const activityToUpdate = this.activites.find((activity) => {
         const activityStartHour = activity.date_start.getHours();
-        const activityEndHour = activity.date_end.getHours();
         return activityStartHour === parseInt(startHour);
       });
 
@@ -261,6 +262,15 @@ export class ActivitiesComponent implements OnInit {
         // Set id to the new activity
         this.newActivity.id = activityToUpdate.id;
         console.log(this.newActivity.id);
+
+        // Selected monitors
+        this.selectedMonitors = [];
+        for (const monitorName of this.selectedMonitorsName) {
+          const monitor = this.globalApi.findMonitor(monitorName);
+          if (monitor) {
+            this.selectedMonitors.push(monitor);
+          }
+        }
 
         // Set monitors to the new activity
         this.newActivity.monitors = this.selectedMonitors;
