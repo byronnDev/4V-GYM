@@ -208,7 +208,6 @@ export class ActivitiesComponent implements OnInit {
   }
 
   removeActivity(activity: Activity) {
-    console.log('Removing activity: ' + activity.activityType.name + '\n' + activity.monitors.forEach(m => m.name));
     // Remove the activity from the global api
     this.globalApi.removeActivity(activity);
     // Update the activities array
@@ -237,20 +236,12 @@ export class ActivitiesComponent implements OnInit {
 
   addMonitor(monitor: Monitors) {
     this.selectedMonitors.push(monitor);
-    console.log(this.selectedMonitors + ' ' + monitor.name);
     return monitor;
-  }
-
-  loadMonitor() {
-    // Sacar notificación de que se ha añadido el monitor correctamente
-    console.log('Monitor añadido correctamente');
-    this.closeModal();
   }
 
   addActivity() {
     // Set the start and end hours
     const startHour = this.newActivityHour.split(' ')[0];
-    console.log(startHour);
     this.newActivity.date_start.setHours(parseInt(startHour.split(':')[0]));
     this.newActivity.date_start.setMinutes(parseInt(startHour.split(':')[1]));
 
@@ -265,7 +256,6 @@ export class ActivitiesComponent implements OnInit {
       if (activityToUpdate) {
         // Set id to the new activity
         this.newActivity.id = activityToUpdate.id;
-        console.log(this.newActivity.id);
 
         // Selected monitors
         this.selectedMonitors = [];
@@ -278,14 +268,12 @@ export class ActivitiesComponent implements OnInit {
 
         // Set monitors to the new activity
         this.newActivity.monitors = this.selectedMonitors;
-        console.log(this.newActivity.monitors);
 
         // Replace the activity with the new activity in the activities array
         this.globalApi.replaceActivity(this.newActivity);
 
         // Update the activities array
         this.activites = this.globalApi.activities;
-        console.log(this.activites);
 
         // Close the modal
         this.closeModal();
