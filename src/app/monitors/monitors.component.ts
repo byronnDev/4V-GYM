@@ -150,6 +150,10 @@ export class MonitorsComponent {
     this.setDefaultPhone();
   }
 
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
   openModalEdit(index: number) {
     this.isModalOpen = true; // Open the modal
     // Set the values for the inputs
@@ -157,10 +161,6 @@ export class MonitorsComponent {
     this.name = this.filteredCards[index].name;
     this.email = this.filteredCards[index].email;
     this.phone = this.filteredCards[index].phone ?? '';
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
   }
 
   setMonitor() {

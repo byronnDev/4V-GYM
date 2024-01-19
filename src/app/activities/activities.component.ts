@@ -6,8 +6,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-api.service';
 import { FormsModule } from '@angular/forms';
 
-//!! TODO: Add Modal to add activity and monitors
-
 @Component({
   selector: 'app-activities',
   template: `
@@ -67,8 +65,7 @@ import { FormsModule } from '@angular/forms';
                         (click)="removeActivity(activity)">
                         <img src="../../assets/ph_trash-fill.png" alt="remove">
                       </button>
-                      <button class="absolute bottom-0 right-0 mb-2 mr-2 text-xl text-bold text-amber-700"
-                        (click)="loadMonitor(activity, hours[$index].split(' ')[0])">
+                      <button class="absolute bottom-0 right-0 mb-2 mr-2 text-xl text-bold text-amber-700">
                         <img src="../../assets/ic_round-edit.png" alt="edit">
                       </button>
                     } @else {
@@ -119,17 +116,28 @@ import { FormsModule } from '@angular/forms';
             </div>
             <!-- Modal body -->
             <div class="flex flex-col space-y-4">
-              <!-- Name -->
-              <select class="bg-neutral-300 text-3xl text-custom-red font-bold rounded-2xl">
-                <option *ngFor="let type of activityTypes">{{type.name}}</option>
+              <!-- Activity type -->
+              <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4 mb-10" (change)="changeMonitorNumber(activityTypeSelected)">
+                <option disabled selected>Tipo Actividad</option>
+                @for (type of activityTypes; track $index) {
+                  <option [value]="type">{{type.name}}</option>
+                }
               </select>
+              
+              <!-- Monitors -->
+              <div *ngFor="let i of numberMonitors">
+                <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4">
+                  <option disabled selected>Select a monitor</option>
+                  <option *ngFor="let monitor of monitors" [value]="monitor.name">{{monitor.name}}</option>
+                </select>
+              </div>
 
               <!-- Accept and cancel buttons -->
               <div class="flex justify-between space-x-6">
                 <button class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
                   ACEPTAR
                 </button>
-                <button class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                <button (click)="closeModal()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
                   CANCELAR
                 </button>
               </div>
@@ -154,6 +162,10 @@ export class ActivitiesComponent {
   monitors: Monitors[] = [];
   isModalOpen: boolean = true;
 
+  activityTypeSelected: ActivityType = this.activityTypes[0];
+  selectedMonitors: Monitors[] = [];
+  numberMonitors: number[] = [];
+
   constructor(private globalApi: GlobalApiService) {
     this.activites = this.globalApi.activities;
     this.activityTypes = this.globalApi.activityTypes;
@@ -171,12 +183,21 @@ export class ActivitiesComponent {
     this.activites = this.activites.filter((a) => a !== activity);
   }
 
-  loadMonitor(activity: Activity, hour: string) {
-    // console.log(activity);
+  openModal(hour: string) {
+    this.isModalOpen = true;
   }
 
-  openModal(hour: string) {
-    // console.log(hour);
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  //!! TODO: FIX THIS VISUAL BUG
+  changeMonitorNumber(activityType: ActivityType) {
+    this.activityTypeSelected = activityType;
+    this.numberMonitors = [];
+    for (let i = 0; i < this.activityTypeSelected.numberMonitors; i++) {
+      this.numberMonitors.push(i);
+    }
   }
 }
 

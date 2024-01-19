@@ -83,11 +83,7 @@ export class GlobalApiService {
     this.activities = [
       {
         id: 1,
-        activityType: {
-          id: 1,
-          name: ActivityTypeEnum.Pilates,
-          numberMonitors: 1
-        },
+        activityType: this.activityTypes[1],
         monitors: [
           this.monitors[0]
         ],
@@ -96,22 +92,14 @@ export class GlobalApiService {
       },
       {
         id: 2,
-        activityType: {
-          id: 2,
-          name: ActivityTypeEnum.BodyPump,
-          numberMonitors: 0
-        },
+        activityType: this.activityTypes[0],
         monitors: [],
         date_start: new Date('2021-06-01T13:30:00'),
         date_end: new Date('2021-06-01T15:00:00')
       },
       {
         id: 3,
-        activityType: {
-          id: 3,
-          name: ActivityTypeEnum.Spinning,
-          numberMonitors: 2
-        },
+        activityType: this.activityTypes[2],
         monitors: [
           this.monitors[2], this.monitors[1]
         ],
