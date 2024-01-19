@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-api.service';
+import { FormsModule } from '@angular/forms';
 
 //!! TODO: Add Modal to add activity and monitors
 
@@ -101,6 +102,43 @@ import { GlobalApiService, Activity, ActivityType, Monitors } from '../global-ap
           </tbody>
         </table>
       </div>
+
+    <!-- Modal -->
+    @if (isModalOpen) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter 
+      backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out">
+      <div class="fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
+          overflow-x-hidden bg-white rounded shadow-lg m-20">
+
+        <div class="flex items-center justify-center">
+          <div>
+            <!-- Modal header -->
+            <div class="flex relative">
+              <img src="../assets/bi_person-fill.png" alt="person icon" class="mx-auto mt-4">
+              <img src="../assets/mingcute_add-fill.png" alt="person icon" class="absolute bottom-7 right-14 h-8">
+            </div>
+            <!-- Modal body -->
+            <div class="flex flex-col space-y-4">
+              <!-- Name -->
+              <select class="bg-neutral-300 text-3xl text-custom-red font-bold rounded-2xl">
+                <option *ngFor="let type of activityTypes">{{type.name}}</option>
+              </select>
+
+              <!-- Accept and cancel buttons -->
+              <div class="flex justify-between space-x-6">
+                <button class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                  ACEPTAR
+                </button>
+                <button class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">
+                  CANCELAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
   `,
   styles: `
     .demo-inline-calendar-card {
@@ -114,6 +152,7 @@ export class ActivitiesComponent {
   activites: Activity[] = [];
   activityTypes: ActivityType[] = [];
   monitors: Monitors[] = [];
+  isModalOpen: boolean = true;
 
   constructor(private globalApi: GlobalApiService) {
     this.activites = this.globalApi.activities;
@@ -143,7 +182,7 @@ export class ActivitiesComponent {
 
 @NgModule({
   declarations: [ActivitiesComponent],
-  imports: [CommonModule, MatCardModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, MatCardModule, MatDatepickerModule, MatNativeDateModule, FormsModule],
   providers: [GlobalApiService],
   exports: [ActivitiesComponent]
 })
