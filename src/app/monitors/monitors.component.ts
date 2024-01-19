@@ -130,7 +130,7 @@ export class MonitorsComponent {
 
   search() {
     if (this.searchString) {
-      this.filteredCards = this.cards.filter(card => card.name.toLowerCase().includes(this.searchString.toLowerCase()));
+      this.filteredCards = this.cards.filter(card => card.name.toLowerCase().startsWith(this.searchString.toLowerCase()));
     } else {
       this.filteredCards = this.cards;
     }
