@@ -1,34 +1,73 @@
+# 4V GYM
+
+Este proyecto es una aplicación web para gestionar las actividades de un gimnasio. Fue creado por Mikel Echeverria.
+
+## Comenzando 🚀
+
+Estas instrucciones te permitirán obtener una copia del proyecto en tu máquina local para propósitos de desarrollo y pruebas.
+
+### Pre-requisitos 📋
+
+Qué cosas necesitas para instalar el software y cómo instalarlas.
+
+* [Angular CLI](https://angular.io/guide/setup-local) - Instalación de Angular CLI
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias 
+
+### Instalación 🔧
+
+Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutándose.
+
+Clona el repositorio:
+
+```shell
+git clone https://github.com/MikelEcheverria/4VGym.git
+```
+
+Instala las dependencias:
+
+```shell
+npm install
+```
+
 # 4VGYM
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.10.
 
-`npm install -g @angular/cli` to install Angular CLI
+Para instalar Angular CLI ejecuta:
 
-On Windows client computers, the execution of PowerShell scripts is disabled by default. To allow the execution of PowerShell scripts, which is needed for npm global binaries, you must set the following execution policy:
-`Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+```shell
+npm install -g @angular/cli
+```
 
-if you have an error with `npm install` try `npm install --legacy-peer-deps`
+En computadoras cliente con Windows, la ejecución de scripts de PowerShell está deshabilitada por defecto. Para permitir la ejecución de scripts de PowerShell, que es necesario para los binarios globales de npm, debes establecer la siguiente política de ejecución:
 
-## Development server
+```shell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Si tienes un error con `npm install` intenta con `npm install --legacy-peer-deps`.
 
-## Code scaffolding
+## Ejecutando las pruebas ⚙️
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Explica cómo ejecutar las pruebas automatizadas para este sistema.
 
-## Build
+```shell
+npm run test
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Despliegue 📦
 
-## Running unit tests
+Agrega notas adicionales sobre cómo hacer deploy.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```shell
+ng build --prod
+```
 
-## Running end-to-end tests
+## Construido con 🛠️
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* [Angular](https://angular.io/) - El framework web usado
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias
 
-## Further help
+## Autor ✒️
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* **Mikel Echeverria** - *Trabajo Inicial* - [MikelEcheverria](https://github.com/MikelEcheverria)
