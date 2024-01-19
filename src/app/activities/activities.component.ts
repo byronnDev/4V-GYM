@@ -117,10 +117,10 @@ import { FormsModule } from '@angular/forms';
             <!-- Modal body -->
             <div class="flex flex-col space-y-4">
               <!-- Activity type -->
-              <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4 mb-10" [(ngModel)]="activityTypeSelected" (change)="changeMonitorNumber()">
+              <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4 mb-10" [(ngModel)]="activityTypeSelected">
                 <option disabled selected>Tipo Actividad</option>
                 @for (type of activityTypes; track $index) {
-                  <option [value]="type">{{type.name}}</option>
+                  <option>{{type.name}}</option>
                 }
               </select>
               
@@ -128,7 +128,9 @@ import { FormsModule } from '@angular/forms';
               @for (i of numberMonitors; track $index) {
                 <select class="input h-12 w-full bg-neutral-400 rounded-2xl text-black text-3xl pl-4" [(ngModel)]="selectedMonitors[$index]">
                   <option disabled selected>Select a monitor</option>
-                  <option *ngFor="let monitor of monitors" [value]="monitor">{{monitor.name}}</option>
+                  @for (monitor of monitors; track $index) {
+                    <option>{{monitor.name}}</option>
+                  }
                 </select>
               }
               <!-- Accept and cancel buttons -->
@@ -159,7 +161,7 @@ export class ActivitiesComponent implements OnInit {
   activites: Activity[] = [];
   activityTypes: ActivityType[] = [];
   monitors: Monitors[] = [];
-  isModalOpen: boolean = true;
+  isModalOpen: boolean = false;
   // Modal variables
   activityTypeSelected: ActivityType;
   selectedMonitors: Monitors[];
@@ -176,7 +178,7 @@ export class ActivitiesComponent implements OnInit {
     // Modal variables
     this.activityTypeSelected = this.activityTypes[0];
     this.selectedMonitors = [];
-    this.numberMonitors = [];
+    this.numberMonitors = [1, 2];
 
     // Set the new activity
     this.newActivity = {
@@ -220,52 +222,63 @@ export class ActivitiesComponent implements OnInit {
   modalVariablesDefault() {
     this.activityTypeSelected = this.activityTypes[0];
     this.selectedMonitors = [];
-    this.numberMonitors = [];
+    this.numberMonitors = [1, 2];
   }
 
-  //!! TODO: FIX THIS VISUAL BUG
   changeMonitorNumber() {
-    alert(this.activityTypeSelected.numberMonitors + ' ' + this.activityTypeSelected.name);
-    this.numberMonitors = [];
-
-    for (let i = 0; i < this.activityTypeSelected.numberMonitors; i++) {
-      this.numberMonitors.push(i);
-    }
+    this.numberMonitors = [1, 2];
   }
 
   addMonitor(monitor: Monitors) {
     this.selectedMonitors.push(monitor);
+    console.log(this.selectedMonitors + ' ' + monitor.name);
     return monitor;
   }
 
   loadMonitor() {
     // Sacar notificación de que se ha añadido el monitor correctamente
-    alert('Monitor añadido correctamente');
+    console.log('Monitor añadido correctamente');
     this.closeModal();
   }
 
   addActivity() {
-    // Save hours in variables
+    // Set the start and end hours
     const startHour = this.newActivityHour.split(' ')[0];
-    const endHour = this.newActivityHour.split(' ')[1];
+    console.log(startHour);
+    this.newActivity.date_start.setHours(parseInt(startHour.split(':')[0]));
+    this.newActivity.date_start.setMinutes(parseInt(startHour.split(':')[1]));
 
     // Verificar que los datos sean válidos antes de asignarlos
-    if (startHour && endHour) {
-      // Set id to the new activity
-      this.newActivity.id = this.globalApi.getLastId() + 1;
-      // Set hours to the new activity
-      this.newActivity.date_start.setHours(parseInt(startHour));
-      this.newActivity.date_start.setMinutes(parseInt(endHour));
+    if (startHour) {
+      // Find the activity with the corresponding start and end hour
+      const activityToUpdate = this.activites.find((activity) => {
+        const activityStartHour = activity.date_start.getHours();
+        const activityEndHour = activity.date_end.getHours();
+        return activityStartHour === parseInt(startHour);
+      });
 
-      // Set monitors to the new activity
-      this.newActivity.monitors = this.selectedMonitors;
+      if (activityToUpdate) {
+        // Set id to the new activity
+        this.newActivity.id = activityToUpdate.id;
+        console.log(this.newActivity.id);
 
-      // Add the new activity to the global api and update the activities array
-      this.globalApi.addActivity(this.newActivity);
-      this.activites = this.globalApi.activities;
+        // Set monitors to the new activity
+        this.newActivity.monitors = this.selectedMonitors;
+        console.log(this.newActivity.monitors);
 
-      // Close the modal
-      this.closeModal();
+        // Replace the activity with the new activity in the activities array
+        this.globalApi.replaceActivity(this.newActivity);
+
+        // Update the activities array
+        this.activites = this.globalApi.activities;
+        console.log(this.activites);
+
+        // Close the modal
+        this.closeModal();
+      } else {
+        // Handle error or display a message indicating that no activity was found
+        console.error('No activity found for the specified start and end hour');
+      }
     } else {
       // Handle error or display a message indicating invalid data
       console.error('Invalid start or end hour');

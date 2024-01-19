@@ -129,6 +129,10 @@ export class GlobalApiService {
     this.activities = this.activities.filter(a => a.id !== activity.id);
   }
 
+  replaceActivity(newActivity: Activity): void {
+    this.activities = this.activities.map(a => a.id === newActivity.id ? newActivity : a); // Replace the activity
+  }
+
   removeMonitor(monitor: Monitors): void {
     this.monitors = this.monitors.filter(m => m.id !== monitor.id);
   }
