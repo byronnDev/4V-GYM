@@ -86,4 +86,4 @@ Or open documentation [here](https://byronndev.github.io/4V-GYM/documentation/)!
 
 ## Author ✒️
 
-* **Mikel Echeverria** - *Initial work* - [MikelEcheverria](https://github.com/byronnDev)
+* **Mikel Echeverria** - *Initial work* - [byronnDev](https://github.com/byronnDev)
