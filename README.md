@@ -70,6 +70,14 @@ To run the application locally, use the following command:
 ng serve
 ```
 
+## Diagram 📊
+
+![Diagrama de Componentes Angular](documentation/graph/dependencies.svg)
+
+## Documentation 📖
+
+The documentation of the project is in the [documentation](documentation) folder.
+
 ## Built With 🛠️
 
 * [Angular](https://angular.io/) - The web framework used

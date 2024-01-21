@@ -1,0 +1,1797 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>4-v-gym documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">4-v-gym documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  MonitorsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/monitors/monitors.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-monitors</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code></code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;!-- Search bar --&gt;
+&lt;div class&#x3D;&quot;flex flex-wrap items-center justify-center border-2 border-custom-red rounded-lg w-3/5 bg-neutral-300 mb-20 mx-auto&quot;&gt;
+  &lt;img src&#x3D;&quot;../../assets/symbols_search.png&quot; alt&#x3D;&quot;search&quot; class&#x3D;&quot;w-8 h-8 m-2&quot;&gt;
+  &lt;input id&#x3D;&quot;search&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;flex-grow p-2 outline-none font-bold text-custom-red bg-neutral-300 text-2xl&quot; [(ngModel)]&#x3D;&quot;searchString&quot; (input)&#x3D;&quot;search()&quot;&gt;
+&lt;/div&gt;
+
+&lt;!-- Boton para añadir monitores --&gt;
+&lt;button (click)&#x3D;&quot;openModal()&quot; class&#x3D;&quot;absolute flex justify-end top-3.5 right-48 scale-150&quot;&gt;
+    &lt;img src&#x3D;&quot;../assets/mingcute_add-fill.png&quot; alt&#x3D;&quot;Add monitor&quot;&gt;
+&lt;/button&gt;
+
+&lt;!-- Cards section --&gt;
+&lt;div class&#x3D;&quot;flex flex-wrap space-x-10 justify-center items-center mb-24&quot;&gt;
+  &lt;!-- Button to scroll left --&gt;
+  &lt;button (click)&#x3D;&quot;scrollLeft()&quot;&gt;
+    &lt;img src&#x3D;&quot;../../assets/flechas.png&quot; alt&#x3D;&quot;flecha&quot; class&#x3D;&quot;h-16&quot;&gt;
+  &lt;/button&gt;
+  &lt;!-- Cards --&gt;
+  @for (data of filteredCards; track $index) {
+    @if ($index &gt;&#x3D; firstCardIndex) {
+      @if ($index &lt; firstCardIndex + 3) { &lt;!-- 3 cards per page --&gt;
+        &lt;div class&#x3D;&quot;bg-neutral-300 w-1/5 h-72 pt-5 relative&quot;&gt;
+          &lt;!-- Remove and edit buttons --&gt;
+          &lt;button class&#x3D;&quot;absolute top-4 left-4 text-xl text-bold text-amber-700&quot; (click)&#x3D;&quot;removeMonitor($index)&quot;&gt;
+            &lt;img src&#x3D;&quot;../../assets/ph_trash-fill.png&quot; alt&#x3D;&quot;remove&quot;&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;absolute top-4 right-4 text-xl text-bold text-amber-700&quot; (click)&#x3D;&quot;openModalEdit($index)&quot;&gt;
+            &lt;img src&#x3D;&quot;../../assets/ic_round-edit.png&quot; alt&#x3D;&quot;edit&quot;&gt;
+          &lt;/button&gt;
+          &lt;!-- Card content --&gt;
+          &lt;div class&#x3D;&quot;flex justify-center&quot;&gt;
+            &lt;img src&#x3D;&quot;../../assets/bi_person-fill.png&quot; alt&#x3D;&quot;person&quot; class&#x3D;&quot;h-36 w-36&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;text-center&quot;&gt;
+            &lt;p&gt;{{data.name}}&lt;/p&gt;
+            &lt;a href&#x3D;&quot;mailto:{{data.email}}&quot;&gt;{{data.email}}&lt;/a&gt;
+            &lt;p&gt;{{data.phone}}&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      }
+    }
+  }
+  &lt;!-- Button to scroll right --&gt;
+  &lt;button (click)&#x3D;&quot;scrollRight()&quot;&gt;
+    &lt;img src&#x3D;&quot;../../assets/flechas.png&quot; alt&#x3D;&quot;flecha&quot; class&#x3D;&quot;h-16 rotate-180&quot;&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal --&gt;
+@if (isModalOpen) {
+&lt;div class&#x3D;&quot;fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter
+  backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out&quot;&gt;
+  &lt;div class&#x3D;&quot;fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
+      overflow-x-hidden bg-white rounded shadow-lg m-20&quot;&gt;
+
+    &lt;div class&#x3D;&quot;flex items-center justify-center&quot;&gt;
+      &lt;div&gt;
+        &lt;!-- Modal header --&gt;
+        &lt;div class&#x3D;&quot;flex relative&quot;&gt;
+          &lt;img src&#x3D;&quot;../assets/bi_person-fill.png&quot; alt&#x3D;&quot;person icon&quot; class&#x3D;&quot;mx-auto mt-4&quot;&gt;
+          &lt;img src&#x3D;&quot;../assets/mingcute_add-fill.png&quot; alt&#x3D;&quot;person icon&quot; class&#x3D;&quot;absolute bottom-7 right-14 h-8&quot;&gt;
+        &lt;/div&gt;
+        &lt;!-- Modal body --&gt;
+        &lt;div class&#x3D;&quot;flex flex-col space-y-4&quot;&gt;
+          &lt;!-- Name --&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;name&quot; name&#x3D;&quot;name&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;name&quot; (focus)&#x3D;&quot;name &#x3D;&#x3D;&#x3D; &#x27;&#x27; || name &#x3D;&#x3D;&#x3D; getDefaultName() ? name &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;name &#x3D;&#x3D;&#x3D; &#x27;&#x27; || name &#x3D;&#x3D;&#x3D; getDefaultName() ? name &#x3D; getDefaultName() : null&quot; required&gt;
+          &lt;!-- Email --&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;email&quot; (focus)&#x3D;&quot;email &#x3D;&#x3D;&#x3D; &#x27;&#x27; || email &#x3D;&#x3D;&#x3D; getDefaultEmail() ? email &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;email &#x3D;&#x3D;&#x3D; &#x27;&#x27; || email &#x3D;&#x3D;&#x3D; getDefaultEmail() ? email &#x3D; getDefaultEmail() : null&quot; required&#x3D;&quot;&quot;&gt;
+          &lt;!-- Phone --&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;phone&quot; name&#x3D;&quot;phone&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;phone&quot; (focus)&#x3D;&quot;phone &#x3D;&#x3D;&#x3D; &#x27;&#x27; || phone &#x3D;&#x3D;&#x3D; getDefaultPhone() ? phone &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;phone &#x3D;&#x3D;&#x3D; getDefaultPhone() ? phone &#x3D; getDefaultPhone() : null&quot;&gt;
+
+          &lt;!-- Accept and cancel buttons --&gt;
+          &lt;div class&#x3D;&quot;flex justify-between space-x-6&quot;&gt;
+            &lt;button (click)&#x3D;&quot;updateMonitor(index)&quot; class&#x3D;&quot;bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl&quot;&gt;
+              ACEPTAR
+            &lt;/button&gt;
+            &lt;button (click)&#x3D;&quot;closeModal()&quot; class&#x3D;&quot;bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl&quot;&gt;
+              CANCELAR
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+}
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cards" >cards</a>
+                            </li>
+                            <li>
+                                <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <a href="#filteredCards" >filteredCards</a>
+                            </li>
+                            <li>
+                                <a href="#firstCardIndex" >firstCardIndex</a>
+                            </li>
+                            <li>
+                                <a href="#globalApi" >globalApi</a>
+                            </li>
+                            <li>
+                                <a href="#index" >index</a>
+                            </li>
+                            <li>
+                                <a href="#isModalOpen" >isModalOpen</a>
+                            </li>
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                            <li>
+                                <a href="#phone" >phone</a>
+                            </li>
+                            <li>
+                                <a href="#searchString" >searchString</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeModal" >closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#getDefaultEmail" >getDefaultEmail</a>
+                            </li>
+                            <li>
+                                <a href="#getDefaultIndex" >getDefaultIndex</a>
+                            </li>
+                            <li>
+                                <a href="#getDefaultName" >getDefaultName</a>
+                            </li>
+                            <li>
+                                <a href="#getDefaultPhone" >getDefaultPhone</a>
+                            </li>
+                            <li>
+                                <a href="#openModal" >openModal</a>
+                            </li>
+                            <li>
+                                <a href="#openModalEdit" >openModalEdit</a>
+                            </li>
+                            <li>
+                                <a href="#removeMonitor" >removeMonitor</a>
+                            </li>
+                            <li>
+                                <a href="#scrollLeft" >scrollLeft</a>
+                            </li>
+                            <li>
+                                <a href="#scrollRight" >scrollRight</a>
+                            </li>
+                            <li>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                <a href="#setDefaultEmail" >setDefaultEmail</a>
+                            </li>
+                            <li>
+                                <a href="#setDefaultIndex" >setDefaultIndex</a>
+                            </li>
+                            <li>
+                                <a href="#setDefaultName" >setDefaultName</a>
+                            </li>
+                            <li>
+                                <a href="#setDefaultPhone" >setDefaultPhone</a>
+                            </li>
+                            <li>
+                                <a href="#setMonitor" >setMonitor</a>
+                            </li>
+                            <li>
+                                <a href="#updateMonitor" >updateMonitor</a>
+                            </li>
+                            <li>
+                                <a href="#updateMonitors" >updateMonitors</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeModal"></a>
+                    <span class="name">
+                        <span ><b>closeModal</b></span>
+                        <a href="#closeModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultEmail"></a>
+                    <span class="name">
+                        <span ><b>getDefaultEmail</b></span>
+                        <a href="#getDefaultEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDefaultEmail()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultIndex"></a>
+                    <span class="name">
+                        <span ><b>getDefaultIndex</b></span>
+                        <a href="#getDefaultIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDefaultIndex()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultName"></a>
+                    <span class="name">
+                        <span ><b>getDefaultName</b></span>
+                        <a href="#getDefaultName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDefaultName()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultPhone"></a>
+                    <span class="name">
+                        <span ><b>getDefaultPhone</b></span>
+                        <a href="#getDefaultPhone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDefaultPhone()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openModal"></a>
+                    <span class="name">
+                        <span ><b>openModal</b></span>
+                        <a href="#openModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openModalEdit"></a>
+                    <span class="name">
+                        <span ><b>openModalEdit</b></span>
+                        <a href="#openModalEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openModalEdit(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeMonitor"></a>
+                    <span class="name">
+                        <span ><b>removeMonitor</b></span>
+                        <a href="#removeMonitor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeMonitor(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollLeft"></a>
+                    <span class="name">
+                        <span ><b>scrollLeft</b></span>
+                        <a href="#scrollLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollLeft()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollRight"></a>
+                    <span class="name">
+                        <span ><b>scrollRight</b></span>
+                        <a href="#scrollRight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollRight()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search"></a>
+                    <span class="name">
+                        <span ><b>search</b></span>
+                        <a href="#search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>search()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultEmail"></a>
+                    <span class="name">
+                        <span ><b>setDefaultEmail</b></span>
+                        <a href="#setDefaultEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDefaultEmail()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultIndex"></a>
+                    <span class="name">
+                        <span ><b>setDefaultIndex</b></span>
+                        <a href="#setDefaultIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDefaultIndex()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultName"></a>
+                    <span class="name">
+                        <span ><b>setDefaultName</b></span>
+                        <a href="#setDefaultName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDefaultName()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultPhone"></a>
+                    <span class="name">
+                        <span ><b>setDefaultPhone</b></span>
+                        <a href="#setDefaultPhone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDefaultPhone()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setMonitor"></a>
+                    <span class="name">
+                        <span ><b>setMonitor</b></span>
+                        <a href="#setMonitor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setMonitor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMonitor"></a>
+                    <span class="name">
+                        <span ><b>updateMonitor</b></span>
+                        <a href="#updateMonitor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateMonitor(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMonitors"></a>
+                    <span class="name">
+                        <span ><b>updateMonitors</b></span>
+                        <a href="#updateMonitors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateMonitors()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/monitors/monitors.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cards"></a>
+                    <span class="name">
+                        <span ><b>cards</b></span>
+                        <a href="#cards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Monitors.html" target="_self" >Monitors[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.globalApi.monitors</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/monitors/monitors.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="email"></a>
+                    <span class="name">
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Email&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/monitors/monitors.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredCards"></a>
+                    <span class="name">
+                        <span ><b>filteredCards</b></span>
+                        <a href="#filteredCards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Monitors.html" target="_self" >Monitors[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.cards</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/monitors/monitors.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstCardIndex"></a>
+                    <span class="name">
+                        <span ><b>firstCardIndex</b></span>
+                        <a href="#firstCardIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/monitors/monitors.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="globalApi"></a>
+                    <span class="name">
+                        <span ><b>globalApi</b></span>
+                        <a href="#globalApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/GlobalApiService.html" target="_self" >GlobalApiService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new GlobalApiService()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/monitors/monitors.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="index"></a>
+                    <span class="name">
+                        <span ><b>index</b></span>
+                        <a href="#index"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>-1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/monitors/monitors.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isModalOpen"></a>
+                    <span class="name">
+                        <span ><b>isModalOpen</b></span>
+                        <a href="#isModalOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/monitors/monitors.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Nombre&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/monitors/monitors.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phone"></a>
+                    <span class="name">
+                        <span ><b>phone</b></span>
+                        <a href="#phone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Teléfono&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/monitors/monitors.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchString"></a>
+                    <span class="name">
+                        <span ><b>searchString</b></span>
+                        <a href="#searchString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/monitors/monitors.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { GlobalApiService, Monitors } from &#x27;../global-api.service&#x27;;
+
+//! TODO Add card icons/buttons and add button to add monitors
+
+@Component({
+  selector: &#x27;app-monitors&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: &#x60;
+    &lt;!-- Search bar --&gt;
+    &lt;div class&#x3D;&quot;flex flex-wrap items-center justify-center border-2 border-custom-red rounded-lg w-3/5 bg-neutral-300 mb-20 mx-auto&quot;&gt;
+      &lt;img src&#x3D;&quot;../../assets/symbols_search.png&quot; alt&#x3D;&quot;search&quot; class&#x3D;&quot;w-8 h-8 m-2&quot;&gt;
+      &lt;input id&#x3D;&quot;search&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;flex-grow p-2 outline-none font-bold text-custom-red bg-neutral-300 text-2xl&quot; [(ngModel)]&#x3D;&quot;searchString&quot; (input)&#x3D;&quot;search()&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Boton para añadir monitores --&gt;
+    &lt;button (click)&#x3D;&quot;openModal()&quot; class&#x3D;&quot;absolute flex justify-end top-3.5 right-48 scale-150&quot;&gt;
+        &lt;img src&#x3D;&quot;../assets/mingcute_add-fill.png&quot; alt&#x3D;&quot;Add monitor&quot;&gt;
+    &lt;/button&gt;
+
+    &lt;!-- Cards section --&gt;
+    &lt;div class&#x3D;&quot;flex flex-wrap space-x-10 justify-center items-center mb-24&quot;&gt;
+      &lt;!-- Button to scroll left --&gt;
+      &lt;button (click)&#x3D;&quot;scrollLeft()&quot;&gt;
+        &lt;img src&#x3D;&quot;../../assets/flechas.png&quot; alt&#x3D;&quot;flecha&quot; class&#x3D;&quot;h-16&quot;&gt;
+      &lt;/button&gt;
+      &lt;!-- Cards --&gt;
+      @for (data of filteredCards; track $index) {
+        @if ($index &gt;&#x3D; firstCardIndex) { 
+          @if ($index &lt; firstCardIndex + 3) { &lt;!-- 3 cards per page --&gt;
+            &lt;div class&#x3D;&quot;bg-neutral-300 w-1/5 h-72 pt-5 relative&quot;&gt;
+              &lt;!-- Remove and edit buttons --&gt;
+              &lt;button class&#x3D;&quot;absolute top-4 left-4 text-xl text-bold text-amber-700&quot; (click)&#x3D;&quot;removeMonitor($index)&quot;&gt;
+                &lt;img src&#x3D;&quot;../../assets/ph_trash-fill.png&quot; alt&#x3D;&quot;remove&quot;&gt;
+              &lt;/button&gt;
+              &lt;button class&#x3D;&quot;absolute top-4 right-4 text-xl text-bold text-amber-700&quot; (click)&#x3D;&quot;openModalEdit($index)&quot;&gt;
+                &lt;img src&#x3D;&quot;../../assets/ic_round-edit.png&quot; alt&#x3D;&quot;edit&quot;&gt;
+              &lt;/button&gt;
+              &lt;!-- Card content --&gt;
+              &lt;div class&#x3D;&quot;flex justify-center&quot;&gt;
+                &lt;img src&#x3D;&quot;../../assets/bi_person-fill.png&quot; alt&#x3D;&quot;person&quot; class&#x3D;&quot;h-36 w-36&quot;&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                &lt;p&gt;{{data.name}}&lt;/p&gt;
+                &lt;a href&#x3D;&quot;mailto:{{data.email}}&quot;&gt;{{data.email}}&lt;/a&gt;
+                &lt;p&gt;{{data.phone}}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          }
+        }
+      }
+      &lt;!-- Button to scroll right --&gt;
+      &lt;button (click)&#x3D;&quot;scrollRight()&quot;&gt;
+        &lt;img src&#x3D;&quot;../../assets/flechas.png&quot; alt&#x3D;&quot;flecha&quot; class&#x3D;&quot;h-16 rotate-180&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Modal --&gt;
+    @if (isModalOpen) {
+    &lt;div class&#x3D;&quot;fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter 
+      backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out&quot;&gt;
+      &lt;div class&#x3D;&quot;fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto
+          overflow-x-hidden bg-white rounded shadow-lg m-20&quot;&gt;
+
+        &lt;div class&#x3D;&quot;flex items-center justify-center&quot;&gt;
+          &lt;div&gt;
+            &lt;!-- Modal header --&gt;
+            &lt;div class&#x3D;&quot;flex relative&quot;&gt;
+              &lt;img src&#x3D;&quot;../assets/bi_person-fill.png&quot; alt&#x3D;&quot;person icon&quot; class&#x3D;&quot;mx-auto mt-4&quot;&gt;
+              &lt;img src&#x3D;&quot;../assets/mingcute_add-fill.png&quot; alt&#x3D;&quot;person icon&quot; class&#x3D;&quot;absolute bottom-7 right-14 h-8&quot;&gt;
+            &lt;/div&gt;
+            &lt;!-- Modal body --&gt;
+            &lt;div class&#x3D;&quot;flex flex-col space-y-4&quot;&gt;
+              &lt;!-- Name --&gt;
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;name&quot; name&#x3D;&quot;name&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;name&quot; (focus)&#x3D;&quot;name &#x3D;&#x3D;&#x3D; &#x27;&#x27; || name &#x3D;&#x3D;&#x3D; getDefaultName() ? name &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;name &#x3D;&#x3D;&#x3D; &#x27;&#x27; || name &#x3D;&#x3D;&#x3D; getDefaultName() ? name &#x3D; getDefaultName() : null&quot; required&gt;
+              &lt;!-- Email --&gt;
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;email&quot; (focus)&#x3D;&quot;email &#x3D;&#x3D;&#x3D; &#x27;&#x27; || email &#x3D;&#x3D;&#x3D; getDefaultEmail() ? email &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;email &#x3D;&#x3D;&#x3D; &#x27;&#x27; || email &#x3D;&#x3D;&#x3D; getDefaultEmail() ? email &#x3D; getDefaultEmail() : null&quot; required&#x3D;&quot;&quot;&gt;
+              &lt;!-- Phone --&gt;
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;phone&quot; name&#x3D;&quot;phone&quot; class&#x3D;&quot;input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4&quot; [(ngModel)]&#x3D;&quot;phone&quot; (focus)&#x3D;&quot;phone &#x3D;&#x3D;&#x3D; &#x27;&#x27; || phone &#x3D;&#x3D;&#x3D; getDefaultPhone() ? phone &#x3D; &#x27;&#x27; : null&quot; (blur)&#x3D;&quot;phone &#x3D;&#x3D;&#x3D; getDefaultPhone() ? phone &#x3D; getDefaultPhone() : null&quot;&gt;
+
+              &lt;!-- Accept and cancel buttons --&gt;
+              &lt;div class&#x3D;&quot;flex justify-between space-x-6&quot;&gt;
+                &lt;button (click)&#x3D;&quot;updateMonitor(index)&quot; class&#x3D;&quot;bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl&quot;&gt;
+                  ACEPTAR
+                &lt;/button&gt;
+                &lt;button (click)&#x3D;&quot;closeModal()&quot; class&#x3D;&quot;bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl&quot;&gt;
+                  CANCELAR
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    }
+    &#x60;,
+  styles: &#x60;&#x60;
+})
+export class MonitorsComponent {
+  globalApi: GlobalApiService &#x3D; new GlobalApiService();
+  cards: Monitors[] &#x3D; this.globalApi.monitors;
+
+  filteredCards: Monitors[] &#x3D; this.cards; // cards filtered by search
+
+  firstCardIndex &#x3D; 0; // index of the first card to show
+  searchString &#x3D; &#x27;&#x27;; // value of the search input
+
+  isModalOpen &#x3D; false; // true if the modal is open
+
+  // Default values for the inputs
+  index: number &#x3D; -1; setDefaultIndex() { this.index &#x3D; -1; }; getDefaultIndex() { return -1; };
+  name: string &#x3D; &#x27;Nombre&#x27;; setDefaultName() { this.name &#x3D; &#x27;Nombre&#x27;; }; getDefaultName() { return &#x27;Nombre&#x27;; };
+  email: string &#x3D; &#x27;Email&#x27;; setDefaultEmail() { this.email &#x3D; &#x27;Email&#x27;; }; getDefaultEmail() { return &#x27;Email&#x27;; };
+  phone: string &#x3D; &#x27;Teléfono&#x27;; setDefaultPhone() { this.phone &#x3D; &#x27;Teléfono&#x27;; }; getDefaultPhone() { return &#x27;Teléfono&#x27;; };
+
+  scrollLeft() {
+    if (this.firstCardIndex &gt; 0) {
+      this.firstCardIndex--;
+    }
+  }
+
+  scrollRight() {
+    if (this.firstCardIndex &lt; this.cards.length - 3) {
+      this.firstCardIndex++;
+    }
+  }
+
+  search() {
+    if (this.searchString) {
+      this.filteredCards &#x3D; this.cards.filter(card &#x3D;&gt; card.name.toLowerCase().startsWith(this.searchString.toLowerCase()));
+    } else {
+      this.filteredCards &#x3D; this.cards;
+    }
+  }
+
+  removeMonitor(index: number) {
+    this.globalApi.removeMonitor(this.cards[index]); // Remove the monitor from the global api
+    this.updateMonitors(); // Update the cards array
+  }
+
+  openModal() {
+    this.isModalOpen &#x3D; true; // Open the modal
+    // Set the default values for the inputs
+    this.setDefaultIndex();
+    this.setDefaultName();
+    this.setDefaultEmail();
+    this.setDefaultPhone();
+  }
+
+  closeModal() {
+    this.isModalOpen &#x3D; false;
+  }
+
+  openModalEdit(index: number) {
+    this.isModalOpen &#x3D; true; // Open the modal
+    // Set the values for the inputs
+    this.index &#x3D; index;
+    this.name &#x3D; this.filteredCards[index].name;
+    this.email &#x3D; this.filteredCards[index].email;
+    this.phone &#x3D; this.filteredCards[index].phone ?? &#x27;&#x27;;
+  }
+
+  setMonitor() {
+    this.closeModal(); // Close the modal
+
+    this.globalApi.addMonitor({
+      id: this.globalApi.getLastId() + 1,
+      name: this.name,
+      email: this.email,
+      phone: this.phone
+    }); // Add the monitor to the global api
+
+    this.cards &#x3D; this.globalApi.monitors; // Update the cards array
+
+    this.search(); // Update the filtered cards
+  }
+
+  updateMonitors() {
+    this.cards &#x3D; this.globalApi.monitors; // Update the cards array
+    this.search(); // Update the filtered cards
+    this.filteredCards &#x3D; this.cards; // Update the filtered cards
+  }
+
+  updateMonitor(index: number) {
+    if (this.index &#x3D;&#x3D;&#x3D; this.getDefaultIndex()) {
+      this.setMonitor();
+      return;
+    }
+
+    this.globalApi.updateMonitor(this.cards[index].id, {
+      id: this.cards[index].id,
+      name: this.name,
+      email: this.email,
+      phone: this.phone
+    }); // Update the monitor in the global api
+    this.updateMonitors(); // Update the cards array
+    this.closeModal(); // Close the modal
+  }
+
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Search bar --><div class="flex flex-wrap items-center justify-center border-2 border-custom-red rounded-lg w-3/5 bg-neutral-300 mb-20 mx-auto">  <img src="../../assets/symbols_search.png" alt="search" class="w-8 h-8 m-2">  <input id="search" type="text" class="flex-grow p-2 outline-none font-bold text-custom-red bg-neutral-300 text-2xl" [(ngModel)]="searchString" (input)="search()"></div><!-- Boton para añadir monitores --><button (click)="openModal()" class="absolute flex justify-end top-3.5 right-48 scale-150">    <img src="../assets/mingcute_add-fill.png" alt="Add monitor"></button><!-- Cards section --><div class="flex flex-wrap space-x-10 justify-center items-center mb-24">  <!-- Button to scroll left -->  <button (click)="scrollLeft()">    <img src="../../assets/flechas.png" alt="flecha" class="h-16">  </button>  <!-- Cards -->  @for (data of filteredCards; track $index) {    @if ($index >= firstCardIndex) {      @if ($index < firstCardIndex + 3) { <!-- 3 cards per page -->        <div class="bg-neutral-300 w-1/5 h-72 pt-5 relative">          <!-- Remove and edit buttons -->          <button class="absolute top-4 left-4 text-xl text-bold text-amber-700" (click)="removeMonitor($index)">            <img src="../../assets/ph_trash-fill.png" alt="remove">          </button>          <button class="absolute top-4 right-4 text-xl text-bold text-amber-700" (click)="openModalEdit($index)">            <img src="../../assets/ic_round-edit.png" alt="edit">          </button>          <!-- Card content -->          <div class="flex justify-center">            <img src="../../assets/bi_person-fill.png" alt="person" class="h-36 w-36">          </div>          <div class="text-center">            <p>{{data.name}}</p>            <a href="mailto:{{data.email}}">{{data.email}}</a>            <p>{{data.phone}}</p>          </div>        </div>      }    }  }  <!-- Button to scroll right -->  <button (click)="scrollRight()">    <img src="../../assets/flechas.png" alt="flecha" class="h-16 rotate-180">  </button></div><!-- Modal -->@if (isModalOpen) {<div class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-70 transition backdrop-filter  backdrop-saturate-150 backdrop-blur-sm duration-300 ease-in-out">  <div class="fixed inset-y-0 z-50 w-1/2 h-auto overflow-y-auto      overflow-x-hidden bg-white rounded shadow-lg m-20">    <div class="flex items-center justify-center">      <div>        <!-- Modal header -->        <div class="flex relative">          <img src="../assets/bi_person-fill.png" alt="person icon" class="mx-auto mt-4">          <img src="../assets/mingcute_add-fill.png" alt="person icon" class="absolute bottom-7 right-14 h-8">        </div>        <!-- Modal body -->        <div class="flex flex-col space-y-4">          <!-- Name -->          <input type="text" id="name" name="name" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="name" (focus)="name === \'\' || name === getDefaultName() ? name = \'\' : null" (blur)="name === \'\' || name === getDefaultName() ? name = getDefaultName() : null" required>          <!-- Email -->          <input type="text" id="email" name="email" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="email" (focus)="email === \'\' || email === getDefaultEmail() ? email = \'\' : null" (blur)="email === \'\' || email === getDefaultEmail() ? email = getDefaultEmail() : null" required="">          <!-- Phone -->          <input type="text" id="phone" name="phone" class="input h-12 w-full bg-neutral-400 rounded-lg text-3xl p-4" [(ngModel)]="phone" (focus)="phone === \'\' || phone === getDefaultPhone() ? phone = \'\' : null" (blur)="phone === getDefaultPhone() ? phone = getDefaultPhone() : null">          <!-- Accept and cancel buttons -->          <div class="flex justify-between space-x-6">            <button (click)="updateMonitor(index)" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">              ACEPTAR            </button>            <button (click)="closeModal()" class="bg-custom-red hover:bg-red-700 text-white text-3xl px-5 py-2 rounded-2xl">              CANCELAR            </button>          </div>        </div>      </div>    </div>  </div></div>}</div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FooterSelectorsComponent', 'selector': 'app-footer-selectors'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MonitorsComponent', 'selector': 'app-monitors'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'MonitorsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MonitorsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
