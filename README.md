@@ -1,73 +1,80 @@
-# 4V GYM
+# 4V Gym
 
-Este proyecto es una aplicación web para gestionar las actividades de un gimnasio. Fue creado por Mikel Echeverria.
+This is a web application for managing activities in a gym. It was created by Mikel Echeverria.
 
-## Comenzando 🚀
+## Getting Started 🚀
 
-Estas instrucciones te permitirán obtener una copia del proyecto en tu máquina local para propósitos de desarrollo y pruebas.
+These instructions will help you set up your development environment to run the project locally.
 
-### Pre-requisitos 📋
+### Prerequisites 📋
 
-Qué cosas necesitas para instalar el software y cómo instalarlas.
+What you need to install and how to install them.
 
-* [Angular CLI](https://angular.io/guide/setup-local) - Instalación de Angular CLI
-* [NPM](https://www.npmjs.com/) - Manejador de dependencias 
+* [Angular CLI](https://angular.io/guide/setup-local) - Install Angular CLI
+* [NPM](https://www.npmjs.com/) - Package manager
 
-### Instalación 🔧
+### Installation 🔧
 
-Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutándose.
+A series of example steps you can take to set up your development environment.
 
-Clona el repositorio:
+Clone the repository:
 
 ```shell
 git clone https://github.com/MikelEcheverria/4VGym.git
 ```
 
-Instala las dependencias:
+Install dependencies:
 
 ```shell
 npm install
 ```
 
-# 4VGYM
+## Project Generated with 🛠️
 
-Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.10.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
-Para instalar Angular CLI ejecuta:
+To install Angular CLI, run:
 
 ```shell
 npm install -g @angular/cli
 ```
 
-En computadoras cliente con Windows, la ejecución de scripts de PowerShell está deshabilitada por defecto. Para permitir la ejecución de scripts de PowerShell, que es necesario para los binarios globales de npm, debes establecer la siguiente política de ejecución:
+On Windows client computers, PowerShell script execution is disabled by default. To enable the execution of
+PowerShell scripts, which is necessary for global npm binaries, set the following policy:
 
 ```shell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
-Si tienes un error con `npm install` intenta con `npm install --legacy-peer-deps`.
+If you encounter an error with `npm install`, try using `npm install --legacy-peer-deps`.
 
-## Ejecutando las pruebas ⚙️
+## Running Tests ⚙️
 
-Explica cómo ejecutar las pruebas automatizadas para este sistema.
+Explain how to run automated tests for the system.
 
 ```shell
 npm run test
 ```
 
-## Despliegue 📦
+## Deployment 📦
 
-Agrega notas adicionales sobre cómo hacer deploy.
+Add additional deployment notes here.
 
 ```shell
 ng build --prod
 ```
 
-## Construido con 🛠️
+To run the application locally, use the following command:
 
-* [Angular](https://angular.io/) - El framework web usado
-* [NPM](https://www.npmjs.com/) - Manejador de dependencias
+```shell
+ng serve
+```
 
-## Autor ✒️
+## Built With 🛠️
 
-* **Mikel Echeverria** - *Trabajo Inicial* - [MikelEcheverria](https://github.com/MikelEcheverria)
+* [Angular](https://angular.io/) - The web framework used
+* [NPM](https://www.npmjs.com/) - Package manager
+
+## Author ✒️
+
+* **Mikel Echeverria** - *Initial work* - [MikelEcheverria](https://github.com/MikelEcheverria)
