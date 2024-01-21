@@ -77,6 +77,7 @@ ng serve
 ## Documentation 📖
 
 The documentation of the project is in the [documentation](documentation) folder.
+Or open documentation [here](https://byronndev.github.io/4V-GYM/documentation/)!.
 
 ## Built With 🛠️
 
